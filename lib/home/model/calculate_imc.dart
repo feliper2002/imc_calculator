@@ -5,13 +5,14 @@ abstract class CalculateIMC {
 class CalculateIMCImpl implements CalculateIMC {
   @override
   double calculate(double height, double mass) {
-    Map<String, dynamic> errors = {};
+    double calculus;
 
-    if (height <= 0 || mass <= 0) {
-      errors.putIfAbsent("InvalidNumberError", () => null);
+    try {
+      assert(height > 0 && mass > 0);
+      calculus = (mass / (height * height));
+    } catch (e) {
+      throw AssertionError("A altura e a massa devem ser valores positivos!");
     }
-
-    double calculus = (mass / (height * height));
 
     return calculus;
   }
