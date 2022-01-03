@@ -5,25 +5,33 @@ class IMCController {
 
   IMCController(this._calculateIMCUsecase);
 
-  double? mass;
-  double? height;
+  String? mass;
+  String? height;
   double result = 0;
 
-  setMass(double value) {
+  bool changedResult = false;
+
+  setMass(String value) {
     mass = value;
   }
 
-  setResult(double value) {
-    result = value;
-  }
-
-  setHeight(double value) {
+  setHeight(String value) {
     height = value;
   }
 
-  void calculateIMCResult(double height, double mass) {
-    double calculus = _calculateIMCUsecase.calculate(height, mass);
+  setResult(double value) {
+    changedResult = true;
+    result = value;
+  }
+
+  void calculateIMCResult() {
+    double calculus = _calculateIMCUsecase.calculate(
+        double.parse(height!), double.parse(mass!));
     setResult(calculus);
+  }
+
+  bool validateForm() {
+    return height != null && mass != null;
   }
 
   String get imcCategory {

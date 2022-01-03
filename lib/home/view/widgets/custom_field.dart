@@ -14,6 +14,8 @@ class CustomField extends StatelessWidget {
   final Color borderColor;
   final double borderWidth;
   final int? maxLength;
+  final EdgeInsetsGeometry margin;
+  final EdgeInsetsGeometry padding;
   final TextEditingController? controller;
   final Function(String?)? onChanged;
   const CustomField({
@@ -33,33 +35,39 @@ class CustomField extends StatelessWidget {
     this.onChanged,
     this.controller,
     this.maxLength,
+    this.margin = const EdgeInsets.symmetric(horizontal: 20),
+    this.padding = EdgeInsets.zero,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return TextFormField(
-      controller: controller,
-      keyboardType: keyboardType,
-      decoration: InputDecoration(
-        labelText: labelText,
-        labelStyle: labelStyle,
-        hintText: hintText,
-        hintStyle: hintStyle,
-        border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(borderRadius),
-          borderSide: BorderSide(color: borderColor, width: borderWidth),
+    return Container(
+      padding: padding,
+      margin: margin,
+      child: TextFormField(
+        controller: controller,
+        keyboardType: keyboardType,
+        decoration: InputDecoration(
+          labelText: labelText,
+          labelStyle: labelStyle,
+          hintText: hintText,
+          hintStyle: hintStyle,
+          border: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(borderRadius),
+            borderSide: BorderSide(color: borderColor, width: borderWidth),
+          ),
+          enabledBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(borderRadius),
+            borderSide: BorderSide(color: borderColor, width: borderWidth),
+          ),
         ),
-        enabledBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(borderRadius),
-          borderSide: BorderSide(color: borderColor, width: borderWidth),
-        ),
+        style: style,
+        maxLength: maxLength ?? 5,
+        textDirection: textDirection,
+        textAlign: textAlign,
+        textAlignVertical: textAlignVertical,
+        onChanged: onChanged,
       ),
-      style: style,
-      maxLength: maxLength ?? 3,
-      textDirection: textDirection,
-      textAlign: textAlign,
-      textAlignVertical: textAlignVertical,
-      onChanged: onChanged,
     );
   }
 }
