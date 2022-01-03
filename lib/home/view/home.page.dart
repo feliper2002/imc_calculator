@@ -41,10 +41,10 @@ class _HomePageState extends State<HomePage> {
             ),
             const SizedBox(height: 50),
             CustomField(
-              labelText: 'Type your height (m)',
+              labelText: 'Type your height (cm)',
               labelStyle: const TextStyle(fontSize: 18, color: Colors.white),
               hintStyle: const TextStyle(fontSize: 18, color: Colors.white),
-              maxLength: 4,
+              maxLength: 3,
               style: const TextStyle(fontSize: 18, color: Colors.white),
               onChanged: (value) {
                 setState(() {
@@ -81,7 +81,8 @@ class _HomePageState extends State<HomePage> {
             Visibility(
               visible: controller.changedResult,
               child: Text(
-                controller.imcCategory,
+                '${controller.result.toStringAsFixed(2)}\n${controller.imcCategory}',
+                textAlign: TextAlign.center,
                 style: const TextStyle(
                   color: Colors.white,
                   fontSize: 28,

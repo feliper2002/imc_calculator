@@ -8,10 +8,12 @@ void main() {
 
   test('Should return a `double` which represents the IMC calculus result.',
       () {
-    double height = 180;
-    double mass = 62;
+    String height = '180';
+    String mass = '62';
 
-    controller.calculateIMCResult(height, mass);
+    controller.setHeight(height);
+    controller.setMass(mass);
+    controller.calculateIMCResult();
 
     expect(controller.result, isA<double>());
     expect(controller.result, isPositive);

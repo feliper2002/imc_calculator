@@ -9,6 +9,7 @@ class CalculateIMCImpl implements CalculateIMC {
 
     try {
       assert(height > 0 && mass > 0);
+      height /= 100;
       calculus = (mass / (height * height));
     } catch (e) {
       throw AssertionError("A altura e a massa devem ser valores positivos!");
